@@ -117,16 +117,38 @@ module.exports = {
 
     // Securing Node-RED
     // -----------------
-    // To password protect the Node-RED editor and admin API, the following
-    // property can be used. See http://nodered.org/docs/security.html for details.
-    //adminAuth: {
-    //    type: "credentials",
-    //    users: [{
-    //        username: "admin",
-    //        password: "$2a$08$zZWtXTja0fB1pzD4sHCMyOCMYz2Z6dNbM6tl8sJogENOMcxWV9DN.",
-    //        permissions: "*"
-    //    }]
-    //},
+    adminAuth: {
+    type: "strategy",
+    strategy: {
+      name: "Keycloak",
+      label: 'Sign in with Annette',
+      icon: "fa-sign-in",
+      strategy: require("@exlinc/keycloak-passport"),
+      options: {
+
+        host: 'http://localhost:8180/auth',
+        realm: 'Annette',
+
+        //issuer: 'http://localhost:8180/auth/realms/Annette',
+        authorizationURL: 'http://localhost:8180/auth/realms/Annette/protocol/openid-connect/auth',
+        tokenURL: 'http://localhost:8180/auth/realms/Annette/protocol/openid-connect/token',
+        userInfoURL: 'http://localhost:8180/auth/realms/Annette/protocol/openid-connect/userinfo',
+
+        clientID: 'app',
+        clientSecret: 'e6afe346-0281-42c9-902c-5e0046294a4c',
+
+        callbackURL: "http://localhost:1880/auth/strategy/callback",
+        verify: function (accessToken, refreshToken, profile,  done) {
+          done(null, profile.fullName);
+        }
+      }
+    },
+    users: function (username) {
+      return new Promise(function(resolve, reject) {
+        resolve({username: username, permissions: ["*"]})
+      })
+    }
+    },
 
     // To password protect the node-defined HTTP endpoints (httpNodeRoot), or
     // the static content (httpStatic), the following properties can be used.

@@ -33,6 +33,7 @@
     "flow"
   ],
   "dependencies": {
+    "@exlinc/keycloak-passport": "^1.0.2",
     "ajv": "6.5.3",
     "basic-auth": "2.0.0",
     "bcryptjs": "2.4.3",
@@ -64,6 +65,7 @@
     "node-red-node-feedparser": "^0.1.12",
     "node-red-node-rbe": "0.2.*",
     "node-red-node-twitter": "^1.1.0",
+    "node-sass": "^4.9.4",
     "nopt": "4.0.1",
     "oauth2orize": "1.11.0",
     "on-headers": "1.0.1",
