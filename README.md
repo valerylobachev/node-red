@@ -32,7 +32,7 @@ If you want to run the latest code from git, here's how to get started:
  * Download & install Keycloak according [installation guide](https://www.keycloak.org/docs/latest/server_installation/index.html) 
  * Run Keycloak
         
-        /bin/standalone.sh -Djboss.socket.binding.port-offset=100
+        ./bin/standalone.sh -Djboss.socket.binding.port-offset=100
    
  * Open Keycloak's administration console [http://localhost:8180/auth/admin/](http://localhost:8180/auth/admin/)       
  * Create realm Annette using `keycloak\realm.json`
