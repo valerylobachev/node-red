@@ -35,7 +35,8 @@ If you want to run the latest code from git, here's how to get started:
         ./bin/standalone.sh -Djboss.socket.binding.port-offset=100
    
  * Open Keycloak's administration console [http://localhost:8180/auth/admin/](http://localhost:8180/auth/admin/)       
- * Create realm Annette using `keycloak\realm.json`
+ * Create realm Annette using `keycloak\keycloak-realm-export.json`
+ * Regenerate secret for client `node-red` and copy it to file `settings.js` in key `adminAuth.strategy.clientSecret`
  * Create users in new realm
  
 6. Run
